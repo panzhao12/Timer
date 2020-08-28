@@ -1,3 +1,9 @@
+##
+# Author: Pan Zhao <panzhao12@gmail.com>
+#
+# Spaß machen!
+##
+
 import sys
 import timer_ui
 from PyQt5.QtCore import QTimer, QTime, Qt
@@ -19,33 +25,32 @@ class MyWindow(QMainWindow, timer_ui.Ui_MainWindow):
         self.current_time = QTime(0, 0, 0)
 
         self.start_time_flag = 1
-        self.current_time_flag = 1
 
-        self.pushButton.clicked.connect(self.start_timer)
-        self.pushButton_2.clicked.connect(self.stop_timer)
-        self.pushButton_3.clicked.connect(self.reset_timer)
+        self.startButton.clicked.connect(self.start_timer)
+        self.stopButton.clicked.connect(self.stop_timer)
+        self.resetButton.clicked.connect(self.reset_timer)
 
-    # start timer
+    # start timer, set flag false in case of repeating start
     def start_timer(self):
         if self.start_time_flag:
-            self.timer.start(1000)
+            self.timer.start(100)
 
         self.start_time_flag = 0
 
-    # add 1 sec and display
+    # refresh and display current timer (precision: 100ms)
     def refresh_time(self):
-        self.initial_time = self.initial_time.addSecs(1)
+        self.initial_time = self.initial_time.addMSecs(100)
         self.current_time = self.initial_time
         self.lcdNumber.display(self.current_time.toString())
 
         # print(self.current_time.toString())
 
-    # stop timer
+    # stop timer, set the flag true to activate the start button
     def stop_timer(self):
         self.start_time_flag = 1
         self.timer.stop()
 
-    # reset timer
+    # reset timer, set the flag true to activate the start button
     def reset_timer(self):
         self.start_time_flag = 1
         self.timer.stop()
