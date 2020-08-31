@@ -31,6 +31,10 @@
   <property name="windowTitle">
    <string>Timer</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>timer.ico</normaloff>timer.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="startButton">
     <property name="geometry">
